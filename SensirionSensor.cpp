@@ -150,6 +150,7 @@ SensirionSensor::TwoValuesResult SensirionSensor::readTwoValuesResult()
         if (hasError(result)) {
             return TwoValuesResult::error();
         }
+        values[i] = result.getValue();
     }
     return TwoValuesResult::success(std::make_tuple(values[0], values[1]));
 }
@@ -168,6 +169,7 @@ SensirionSensor::ThreeValuesResult SensirionSensor::readThreeValuesResult()
         if (hasError(result)) {
             return ThreeValuesResult::error();
         }
+        values[i] = result.getValue();
     }
     return ThreeValuesResult::success(std::make_tuple(values[0], values[1], values[2]));
 }
