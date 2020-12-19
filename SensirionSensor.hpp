@@ -30,6 +30,8 @@ namespace lr {
 class I2CBus;
 
 
+/// A class with shared functions for Sensirion sensors.
+///
 class SensirionSensor
 {
 public:
@@ -102,22 +104,36 @@ protected:
 
     /// Read a one value result and check the CRC.
     ///
+    /// @return The verified read value.
+    ///
     OneValueResult readOneValueResult();
 
     /// Read a two value result and check the CRCs.
+    ///
+    /// @return The verified read values.
     ///
     TwoValuesResult readTwoValuesResult();
 
     /// Read a three value result and check the CRCs.
     ///
+    /// @return The verified read values.
+    ///
     ThreeValuesResult readThreeValuesResult();
 
     /// Calculate CRC-8 as specified in the datasheet.
+    ///
+    /// @param data A pointer to the data to use.
+    /// @param size The number of bytes to use.
+    /// @return The CRC for the given data.
     ///
     static uint8_t getCrc8(const uint8_t *data, int size);
 
 private:
     /// Read and check a value from the given array.
+    ///
+    /// @param data A pointer to the data array to use.
+    /// @param valueIndex The value index used for error messages.
+    /// @return The verified read value.
     ///
     static StatusResult<uint16_t> readAndCheck(const uint8_t *data, int valueIndex);
 
